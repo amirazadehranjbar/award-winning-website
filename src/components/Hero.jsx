@@ -1,6 +1,10 @@
 import React, {useRef, useState} from 'react'
+import {Moon, Sun} from 'lucide-react'
+import useDarkMode from '../hooks/useDarkMode.js'
 
 const Hero = () => {
+
+    const {isDarkMode, toggleDarkMode} = useDarkMode()
 
     const [currentIndex, setCurrentIndex] = useState(1);
     const [hasClicked, setHasClicked] = useState(false);
@@ -11,9 +15,9 @@ const Hero = () => {
 
     const nextVideoRef = useRef(null);
 
-    const upcomingVideoIndex = ()=> (currentIndex % totalVideos) + 1;
+    const upcomingVideoIndex = () => (currentIndex % totalVideos) + 1;
 
-    const getVideoSrc = (index)=>`videos/hero-${index}.mp4`
+    const getVideoSrc = (index) => `videos/hero-${index}.mp4`
 
 
     const handleMiniVdClick = () => {
@@ -24,13 +28,20 @@ const Hero = () => {
 
     }
 
-    const handleOnLoadedData = ()=>{
+    const handleOnLoadedData = () => {
         setLoadedVideo(prevIndex => prevIndex + 1);
     }
 
     return (
         <div className="relative h-dvh w-screen overflow-x-hidden">
-            <div id="video-frame" className="relative z-10 h-dvh w-screen overflow-hidden bg-blue-50 flex items-center justify-center">
+            <button
+                onClick={toggleDarkMode}
+                className="button-toggle-theme"
+            >
+                {isDarkMode ? <Sun/> : <Moon/>}
+            </button>
+            <div id="video-frame"
+                 className="relative z-10 h-dvh w-screen overflow-hidden bg-blue-50 flex items-center justify-center">
                 <div
                     className="mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg">
                     <div className="origin-center scale-50 opacity-0 transition-all duration-500 ease-in
@@ -71,15 +82,12 @@ const Hero = () => {
                         </h1>
 
                         <p className="mb-5 max-w-64 font-robert-regular text-blue-100">
-                            Enter the Metagame Layer <br /> Unleash the Play Economy
+                            Enter the Metagame Layer <br/> Unleash the Play Economy
                         </p>
 
-                        {/*<Button*/}
-                        {/*    id="watch-trailer"*/}
-                        {/*    title="Watch trailer"*/}
-                        {/*    leftIcon={<TiLocationArrow />}*/}
-                        {/*    containerClass="bg-yellow-300 flex-center gap-1"*/}
-                        {/*/>*/}
+                        <button className="button-one">
+                            Watch trailer
+                        </button>
                     </div>
                 </div>
 

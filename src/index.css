@@ -70,6 +70,16 @@
         @apply border border-white/20;
     }
 
+    .button-one{
+        @apply font-mono font-bold px-4 py-2 rounded-md border-2 text-slate-700 border-slate-500 bg-slate-300 dark:bg-slate-900 dark:text-slate-400 dark:border-slate-600;
+    }
+
+    .button-toggle-theme{
+        @apply fixed top-3 lg:top-4 right-3 lg:right-4 w-9 h-9 lg:w-10 lg:h-10 z-20 flex
+        justify-center items-center bg-slate-800 hover:bg-slate-950 text-slate-300 rounded-full
+        shadow-md transition-colors cursor-pointer
+    }
+
     .nav-hover-btn {
         position: relative;
         margin-inline-start: 2.5rem;
@@ -260,4 +270,9 @@
         clip-path: polygon(29% 15%, 85% 30%, 50% 100%, 10% 64%);
     }
 }
+/*endregion*/
+
+
+/*region dark and light mode*/
+@custom-variant dark (&:where(.dark , .dark *));
 /*endregion*/
